@@ -9,7 +9,7 @@ var board = function(){
 		}
 	});
 
-	$('.btn').click(function(){
+	$(document).click(function(){
 		var num = $('.overlay').children().length;
 		jQuery('<div/>', {
 		    id: num,
