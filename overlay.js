@@ -14,6 +14,10 @@ var board = function(){
 		$("."+num).remove();
 	});
 
+	$('.frame').mouseover(function(event) {
+		$(this).effect("highlight", {}, 3000);
+	});
+
 };
 
 $(document).ready(board);

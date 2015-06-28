@@ -1,13 +1,13 @@
 body{
 	font-family: helvetica;
 	font-weight: lighter;
-	color:#a0a0b0;
+	color:#621920;
 	background-color: #ffffff;
 }
 
 .banner{
 	font-size: 16px;
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #7E4248;
 	padding-top: 0.5em;
 	padding-right: 1em;
 	padding-left: 1em;
@@ -52,7 +52,7 @@ body{
 	display:block;
 	width: 300px;
 	height: 100px;
-	border:1px solid #cccccc;
+	border:1px solid #742B32;
 	padding:3em;
 	margin:1em;
 	margin-left: auto;
