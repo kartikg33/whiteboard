@@ -16,6 +16,14 @@ var board = function(){
 	$(window).resize(initSize);
 
 	//----------EVENTS----------//
+	$(".overlay").dblclick(function(){
+		var num = "id"+$(".overlay").children().length;
+		jQuery("<div/>", {
+		    id: num,
+		}).appendTo(".overlay");
+		$("#"+num).load("box.htm");
+	});
+
 	$(".addbtn").click(function(){
 		var num = "id"+$(".overlay").children().length;
 		jQuery("<div/>", {
