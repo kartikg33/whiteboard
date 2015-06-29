@@ -2,7 +2,7 @@ body{
 	overflow:hidden;
 	font-family: helvetica;
 	font-weight: lighter;
-	color:#621920;
+	color:#2F1544;
 	background-color: #742B32;
 	-moz-user-select:none;
     -webkit-user-select:none;
@@ -15,6 +15,7 @@ body{
 	padding-left: 1em;
 	padding-bottom: 2em;
 	margin: 1em;
+	background-color: #A0895D;
 
 }
 
@@ -31,12 +32,14 @@ body{
 	list-style-type: none;
     padding: 0px;
     margin: 0px;
+
 }
 
 .banner li {
 	display:inline;
     background-position: 0px center; 
     padding-left: 0px; 
+
 }
 
 .overlay {
@@ -44,6 +47,10 @@ body{
 	width: 50%;
 	height: 50%;
 	padding:0px;
+	top:40;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
 }
 
 .overlay .container ul{
