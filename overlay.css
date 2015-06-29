@@ -1,8 +1,11 @@
 body{
+	overflow:hidden;
 	font-family: helvetica;
 	font-weight: lighter;
 	color:#621920;
 	background-color: #ffffff;
+	-moz-user-select:none;
+    -webkit-user-select:none;
 }
 
 .banner{
@@ -20,9 +23,10 @@ body{
 	float: left;
 }
 
-.banner .framecontrol{
+.banner .containercontrol{
 	float:right;
 }
+
 
 .banner ul{
 	list-style-type: none;
@@ -36,29 +40,28 @@ body{
     padding-left: 0px; 
 }
 
-.overlay .frame ul{
+.overlay .container ul{
 	list-style-type: none;
     padding: 0px;
     margin: 0px;
 }
 
-.overlay .frame li{
+.overlay .container li{
 	display:inline;
     background-position: 0px center; 
     padding-left: 0px; 
 }
 
-.overlay .frame{
+.overlay .container{
 	display:block;
 	width: 300px;
 	height: 100px;
-	border:1px solid #742B32;
 	padding:3em;
 	margin:1em;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
-	vertical-align: center;
+	
 }
 
 /* CSS - Cascading Style Sheet */
