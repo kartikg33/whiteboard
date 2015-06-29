@@ -3,7 +3,7 @@ body{
 	font-family: helvetica;
 	font-weight: lighter;
 	color:#2F1544;
-	background-color: #742B32;
+	background-color: #B8A37A;
 	-moz-user-select:none;
     -webkit-user-select:none;
 }
@@ -15,7 +15,7 @@ body{
 	padding-left: 1em;
 	padding-bottom: 2em;
 	margin: 1em;
-	background-color: #A0895D;
+	background-color: #B2767C;
 
 }
 
@@ -39,7 +39,7 @@ body{
 	display:inline;
     background-position: 0px center; 
     padding-left: 0px; 
-
+    cursor: pointer;
 }
 
 .overlay {
