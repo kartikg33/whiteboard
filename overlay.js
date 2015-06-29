@@ -84,7 +84,7 @@ var board = function(){
 	$(document).on("mousedown",".container",function(e) {
 		if (remove=="true"){
 			$(this).parent().remove();
-		}
+		} //if (remove=="true")
 		if(dragging==null){
 			dragging=$(this);	//to prevent other elements from being moved
 			var position = $(this).offset();
@@ -116,7 +116,7 @@ var board = function(){
 				}); 
 
 			});
-		} 	
+		} //if(dragging==null)	
 	});
 	
 

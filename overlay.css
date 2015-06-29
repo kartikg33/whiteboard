@@ -20,11 +20,11 @@ body{
 
 }
 
-.banner .webbuttons{
+.banner .pagenav{
 	float: left;
 }
 
-.banner .containercontrol{
+.banner .pagecontrol{
 	float:right;
 }
 
@@ -44,7 +44,10 @@ body{
     background-position: 0px center; 
     padding-left: 10px; 
     padding-right: 10px;
-    cursor: pointer;
+}
+
+.banner ul a{
+	cursor: pointer;
 }
 
 .overlay {
