@@ -31,6 +31,9 @@ var board = function(){
 
 
 	$(".addbtn").click(function(){
+		remove = "false";
+		$(".overlay").css('cursor', 'auto');
+		$(".container").css('cursor', 'auto');
 		var num = "id"+$(".overlay").children().length;
 		jQuery("<div/>", {
 		    id: num,
@@ -78,7 +81,9 @@ var board = function(){
 	});		
 
 	$(document).on("mousedown",".container",function(e) {
-		
+		if (remove=="true"){
+			$(this).parent().remove();
+		}
 		if(dragging==null){
 			dragging=$(this);	//to prevent other elements from being moved
 			var position = $(this).offset();
@@ -110,12 +115,7 @@ var board = function(){
 				}); 
 
 			});
-		} 
-		if (remove=="true"){
-			//var num = "id"+($(".overlay").children().length-1);
-			//$("#"+num).remove();
-			$(this).parent().remove();
-		}
+		} 	
 	});
 	
 
