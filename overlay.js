@@ -3,11 +3,12 @@ var board = function(){
 	var newwidth;
 	var newheight;
 	var initSize = function(){
-		newwidth = 0.9*$(window).width();
+		newwidth = 0.95*$(window).width();
 		newheight = (1080/1920)*newwidth;
 
 		$('.debug').text('DEBUG width: '+newwidth+', height: '+newheight);
 
+		$(".banner").width(newwidth);		
 		$(".overlay").width(newwidth);
 		$(".overlay").height(newheight);
 	}
