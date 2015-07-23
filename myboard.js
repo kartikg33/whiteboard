@@ -22,21 +22,34 @@ var board = function(){
 
 	//----------EVENTS----------//
 
+	var currentMousePos = { x: 0, y: 0 };
+    $(document).mousemove(function(event) {
+        currentMousePos.x = event.pageX;
+        currentMousePos.y = event.pageY;
+    });
+
+
 	$(".overlay").dblclick(function(event){
-		var reposition = null;
 		var num = "id"+$(".overlay").children().length;
 		jQuery("<div/>", {
 	    	id: num,
 		}).appendTo(".overlay");
 		$("#"+num).load("box.htm");
-		reposition = $("#"+num).css({
+		
+		var newFrame = $("#"+num);
+		var x = currentMousePos.x;
+		var y = currentMousePos.y;
+		var reposition = newFrame.css({
 					'position': 'fixed',
-					'left': event.pageX,
-					'top': 	event.pageY,
+					'left': x,
+					'top': 	y,
 				}); 
 
+		$('.debug').text('DEBUG pos: '+x+', '+y+'; '+
+							'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
+							newFrame.width() +', '+ newFrame.height()
+					);
 	});
-
 
 
         
@@ -147,12 +160,6 @@ var board = function(){
 
 };
 
-var newFrame = function() {
-	var num = "id"+$(".overlay").children().length;
-	jQuery("<div/>", {
-    	id: num,
-	}).appendTo(".overlay");
-	$("#"+num).load("box.htm");
-};
+
 
 $(document).ready(board);
