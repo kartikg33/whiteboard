@@ -2,19 +2,17 @@
 var board = function(){
 	//----------INITIALISE PAGE----------//
 	// VARIABLES
-	var centre_X; //centre of window width
-	var centre_Y; //centre of window height 
-	var newwidth; //width of window
-	var newheight; //height of window
+	var window_centre = {x: 0, y: 0}; //centre point of window
+	var window_size = {x: 0, y: 0}; //width and height of window 
 	var initSize = function(){
-		newwidth = 0.95*$(window).width();
-		newheight = (1080/1920)*newwidth;
+		window_size.x = 0.95*$(window).width();
+		window_size.y = (1080/1920)*window_size.x;
 
-		$('.debug').text('DEBUG width: '+newwidth+', height: '+newheight);
+		$('.debug').text('DEBUG width: '+window_size.x+', height: '+window_size.y);
 
-		$(".banner").width(newwidth);		
-		$(".overlay").width(newwidth);
-		$(".overlay").height(newheight);
+		$(".banner").width(window_size.x);		
+		$(".overlay").width(window_size.x);
+		$(".overlay").height(window_size.y);
 	}
 
 	initSize();
@@ -27,7 +25,6 @@ var board = function(){
         currentMousePos.x = event.pageX;
         currentMousePos.y = event.pageY;
     });
-
 
 	$(".overlay").dblclick(function(event){
 		var num = "id"+$(".overlay").children().length;
@@ -132,12 +129,12 @@ var board = function(){
 				
 				var move_left = Math.max($(".overlay").offset().left
 					, position.left + event.pageX - e.pageX);
-				move_left = Math.min(($(".overlay").offset().left+newwidth)-$(this).width()
+				move_left = Math.min(($(".overlay").offset().left+window_size.x)-$(this).width()
 					,move_left); 
 
 				var move_top = Math.max($(".overlay").offset().top
 					, position.top + event.pageY - e.pageY);
-				move_top = Math.min(($(".overlay").offset().top+newheight)-$(this).height()
+				move_top = Math.min(($(".overlay").offset().top+window_size.y)-$(this).height()
 					, move_top);
 
 				$('.debug').text('DEBUG pos: '+position.left+', '+position.top+'; '+
