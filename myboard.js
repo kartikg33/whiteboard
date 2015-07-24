@@ -30,26 +30,29 @@ var board = function(){
 		var num = "id"+$(".overlay").children().length;
 		jQuery("<div/>", {
 	    	id: num,
+	    	width: 396,
+	    	height: 298
 		}).appendTo(".overlay");
 		$("#"+num).load("box.htm");
 		
 		var newFrame = $("#"+num);
-		var x = currentMousePos.x;
-		var y = currentMousePos.y;
+		var x = currentMousePos.x-(newFrame.width()/2);
+		var y = currentMousePos.y-(newFrame.height()/2);
 		var reposition = newFrame.css({
-					'position': 'fixed',
-					'left': x,
-					'top': 	y,
-				}); 
+			'position': 'fixed',
+			'left': x,
+			'top': 	y,
+		}); 
 
 		$('.debug').text('DEBUG pos: '+x+', '+y+'; '+
-							'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
-							newFrame.width() +', '+ newFrame.height()
-					);
+				'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
+				newFrame.width() +', '+ newFrame.height()
+		);
 	});
 
-
-        
+	$(".container").dblclick(function(event){
+		$(this).parent().remove();
+    });    
 	
 	/*$(document).on("mousedown",".overlay",function() {
 		$(document).on("mousedown",".overlay",function(event) {
@@ -144,7 +147,7 @@ var board = function(){
 							dragging.parent().attr('id') 
 					);
 
-				dragging.css({	//only moves what is being dragged, not others by accident.
+				dragging.parent().css({	//only moves what is being dragged, not others by accident.
 					'position': 'fixed',
 					'left': move_left,
 					'top': 	move_top,
