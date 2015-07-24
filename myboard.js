@@ -27,32 +27,32 @@ var board = function(){
     });
 
 	$(".overlay").dblclick(function(event){
-		var num = "id"+$(".overlay").children().length;
-		jQuery("<div/>", {
-	    	id: num,
-	    	width: 396,
-	    	height: 298
-		}).appendTo(".overlay");
-		$("#"+num).load("box.htm");
-		
-		var newFrame = $("#"+num);
-		var x = currentMousePos.x-(newFrame.width()/2);
-		var y = currentMousePos.y-(newFrame.height()/2);
-		var reposition = newFrame.css({
-			'position': 'fixed',
-			'left': x,
-			'top': 	y,
-		}); 
+		if ($(".selected").length>0){
+			$(".selected").parent().remove();
+		} else {
+			var num = "id"+$(".overlay").children().length;
+			jQuery("<div/>", {
+		    	id: num,
+		    	width: 396,
+		    	height: 298
+			}).appendTo(".overlay");
+			$("#"+num).load("box.htm");
+			
+			var newFrame = $("#"+num);
+			var x = currentMousePos.x-(newFrame.width()/2);
+			var y = currentMousePos.y-(newFrame.height()/2);
+			var reposition = newFrame.css({
+				'position': 'fixed',
+				'left': x,
+				'top': 	y,
+			}); 
 
-		$('.debug').text('DEBUG pos: '+x+', '+y+'; '+
-				'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
-				newFrame.width() +', '+ newFrame.height()
-		);
-	});
-
-	$(".container").dblclick(function(event){
-		$(this).parent().remove();
-    });    
+			$('.debug').text('DEBUG pos: '+x+', '+y+'; '+
+					'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
+					newFrame.width() +', '+ newFrame.height() + ', ' + $(".selected").length
+			);
+		}
+	});  
 	
 	/*$(document).on("mousedown",".overlay",function() {
 		$(document).on("mousedown",".overlay",function(event) {
@@ -99,13 +99,15 @@ var board = function(){
 		$(this).css({
 			'border': '1px dashed #742B32',
 			'cursor': 'grab'
-		}); 	
+		}); 
+		$(this).addClass('selected');	
 	});
 
 	$(document).on("mouseleave",".container",function(event) {
 		$(this).css({
 			'border': '1px solid transparent'
 		}); 
+		$(this).removeClass('selected');
 	});
 
 
