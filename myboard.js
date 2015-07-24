@@ -53,8 +53,8 @@ var board = function(){
 		} else { // Else Creates New Frame
 			jQuery("<div/>", {
 		    	id: numFrames,
-		    	width: 396,
-		    	height: 298
+		    	width: 398,
+		    	height: 198
 			}).appendTo(".overlay");
 			$("#"+numFrames).load("box.htm"); // Loads HTML for New Frame
 			
