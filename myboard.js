@@ -45,21 +45,21 @@ var board = function(){
 	});
 
     // Double Clicking on Page
+    var numFrames = 0;
 	$(".overlay").dblclick(function(){
 		// Deletes Selected Frame
 		if ($(".selected").length>0){
 			$(".selected").parent().remove();
 		} else { // Else Creates New Frame
-			var num = $(".overlay").children().length;
 			jQuery("<div/>", {
-		    	id: num,
+		    	id: numFrames,
 		    	width: 396,
 		    	height: 298
 			}).appendTo(".overlay");
-			$("#"+num).load("box.htm"); // Loads HTML for New Frame
+			$("#"+numFrames).load("box.htm"); // Loads HTML for New Frame
 			
 			//Set Position of New Frame
-			var newFrame = $("#"+num);
+			var newFrame = $("#"+numFrames);
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
 			var reposition = newFrame.css({
@@ -67,11 +67,13 @@ var board = function(){
 				'left': x,
 				'top': 	y,
 			}); 
+			numFrames = numFrames + 1;
 
 			// DEBUG TEXT
 			$('.debug').text('DEBUG pos: '+x+', '+y+'; '+
 					'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
-					newFrame.width() +', '+ newFrame.height() + ', ' + $(".selected").length
+					newFrame.width() +', '+ newFrame.height() + ', ' + $(".overlay").children().length +
+					', ' + numFrames
 			);
 		}
 	});  
