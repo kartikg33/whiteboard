@@ -27,13 +27,30 @@ var board = function(){
         currentMousePos.y = event.pageY;
     });
 
+    // Hovering Over Frame
+	$(document).on("mouseover",".container",function() {
+		$(this).css({
+			'border': '1px dashed #742B32',
+			'cursor': 'grab'
+		}); 
+		$(this).addClass('selected'); // Selects Frame
+	});
+
+	// Moving Mouse Out of Frame
+	$(document).on("mouseleave",".container",function() {
+		$(this).css({
+			'border': '1px solid transparent'
+		}); 
+		$(this).removeClass('selected'); // Deselects Frame
+	});
+
     // Double Clicking on Page
 	$(".overlay").dblclick(function(){
 		// Deletes Selected Frame
 		if ($(".selected").length>0){
 			$(".selected").parent().remove();
 		} else { // Else Creates New Frame
-			var num = "id"+$(".overlay").children().length;
+			var num = $(".overlay").children().length;
 			jQuery("<div/>", {
 		    	id: num,
 		    	width: 396,
@@ -58,52 +75,6 @@ var board = function(){
 			);
 		}
 	});  
-
-	// Hovering Over Frame
-	$(document).on("mouseover",".container",function() {
-		$(this).css({
-			'border': '1px dashed #742B32',
-			'cursor': 'grab'
-		}); 
-		$(this).addClass('selected'); // Selects Frame
-	});
-
-	// Moving Mouse Out of Frame
-	$(document).on("mouseleave",".container",function() {
-		$(this).css({
-			'border': '1px solid transparent'
-		}); 
-		$(this).removeClass('selected'); // Deselects Frame
-	});
-
-
-	// ADD BUTTON
-	$(".addbtn").click(function(){
-		remove = "false";
-		$(".overlay").css('cursor', 'auto');
-		$(".container").css('cursor', 'auto');
-		var num = "id"+$(".overlay").children().length;
-		jQuery("<div/>", {
-		    id: num,
-		}).appendTo(".overlay");
-		$("#"+num).load("box.htm");
-	});
-
-	var remove = "false";
-	$(".rembtn").click(function(){
-		if(remove=="false"){
-			remove = "true";
-			$(".overlay").css('cursor', 'crosshair');
-			$(".container").css('cursor', 'crosshair');
-		} else {
-			remove = "false";
-			$(".overlay").css('cursor', 'auto');
-			$(".container").css('cursor', 'auto');
-		}
-		//var num = "id"+($(".overlay").children().length-1);
-		//$("#"+num).remove();
-	});
-
 
 	// Start Dragging Frame
 	var dragging = null; // Pointer to Frame being Dragged
@@ -140,8 +111,6 @@ var board = function(){
 					'new_pos: '+move_left+', '+move_top	+'; '+
 					dragging.parent().attr('id') 
 				);
-
-
 			});
 		} //if(dragging==null)	
 	});
@@ -155,8 +124,39 @@ var board = function(){
 		dragging = null;
 		$('.debug').text('DEBUG '+dragging);
 	});	
-	
 
+
+
+
+
+
+	// ADD BUTTON
+	$(".addbtn").click(function(){
+		remove = "false";
+		$(".overlay").css('cursor', 'auto');
+		$(".container").css('cursor', 'auto');
+		var num = "id"+$(".overlay").children().length;
+		jQuery("<div/>", {
+		    id: num,
+		}).appendTo(".overlay");
+		$("#"+num).load("box.htm");
+	});
+
+	// REMOVE BUTTON
+	var remove = "false";
+	$(".rembtn").click(function(){
+		if(remove=="false"){
+			remove = "true";
+			$(".overlay").css('cursor', 'crosshair');
+			$(".container").css('cursor', 'crosshair');
+		} else {
+			remove = "false";
+			$(".overlay").css('cursor', 'auto');
+			$(".container").css('cursor', 'auto');
+		}
+		//var num = "id"+($(".overlay").children().length-1);
+		//$("#"+num).remove();
+	});
 };
 
 
