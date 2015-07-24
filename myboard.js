@@ -20,24 +20,28 @@ var board = function(){
 
 	//----------EVENTS----------//
 
+	// Variables to store Mouse Position
 	var currentMousePos = { x: 0, y: 0 };
     $(document).mousemove(function(event) {
         currentMousePos.x = event.pageX;
         currentMousePos.y = event.pageY;
     });
 
-	$(".overlay").dblclick(function(event){
+    // Double Clicking on Page
+	$(".overlay").dblclick(function(){
+		// Deletes Selected Frame
 		if ($(".selected").length>0){
 			$(".selected").parent().remove();
-		} else {
+		} else { // Else Creates New Frame
 			var num = "id"+$(".overlay").children().length;
 			jQuery("<div/>", {
 		    	id: num,
 		    	width: 396,
 		    	height: 298
 			}).appendTo(".overlay");
-			$("#"+num).load("box.htm");
+			$("#"+num).load("box.htm"); // Loads HTML for New Frame
 			
+			//Set Position of New Frame
 			var newFrame = $("#"+num);
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
@@ -47,28 +51,33 @@ var board = function(){
 				'top': 	y,
 			}); 
 
+			// DEBUG TEXT
 			$('.debug').text('DEBUG pos: '+x+', '+y+'; '+
 					'click: '+currentMousePos.x+', '+currentMousePos.y+'; '+ 
 					newFrame.width() +', '+ newFrame.height() + ', ' + $(".selected").length
 			);
 		}
 	});  
-	
-	/*$(document).on("mousedown",".overlay",function() {
-		$(document).on("mousedown",".overlay",function(event) {
-			if(event.which === 1){
-				var num = "id"+$(".overlay").children().length;
-				jQuery("<div/>", {
-			    	id: num,
-				}).appendTo(".overlay");
-				$("#"+num).load("box.htm");
-			} else {
-				$(this).parent().remove();	
-			}
-		});
-	});*/
+
+	// Hovering Over Frame
+	$(document).on("mouseover",".container",function() {
+		$(this).css({
+			'border': '1px dashed #742B32',
+			'cursor': 'grab'
+		}); 
+		$(this).addClass('selected'); // Selects Frame
+	});
+
+	// Moving Mouse Out of Frame
+	$(document).on("mouseleave",".container",function() {
+		$(this).css({
+			'border': '1px solid transparent'
+		}); 
+		$(this).removeClass('selected'); // Deselects Frame
+	});
 
 
+	// ADD BUTTON
 	$(".addbtn").click(function(){
 		remove = "false";
 		$(".overlay").css('cursor', 'auto');
@@ -95,43 +104,18 @@ var board = function(){
 		//$("#"+num).remove();
 	});
 
-	$(document).on("mouseover",".container",function(event) {
-		$(this).css({
-			'border': '1px dashed #742B32',
-			'cursor': 'grab'
-		}); 
-		$(this).addClass('selected');	
-	});
 
-	$(document).on("mouseleave",".container",function(event) {
-		$(this).css({
-			'border': '1px solid transparent'
-		}); 
-		$(this).removeClass('selected');
-	});
-
-
-	var dragging = null;
-	$(document).on("mouseup",".overlay",function(e) {
-		$(document).off("mousemove",".container");
-		if(dragging!=null){
-			dragging.css('cursor','auto');
-		}
-		dragging = null;
-		$('.debug').text('DEBUG '+dragging);
-	});		
-
+	// Start Dragging Frame
+	var dragging = null; // Pointer to Frame being Dragged
 	$(document).on("mousedown",".container",function(e) {
-		if (remove=="true"){
-			$(this).parent().remove();
-		} //if (remove=="true")
-		if(dragging==null){
+		if(dragging==null){ // Only Drag One Frame At A Time
 			dragging=$(this);	//to prevent other elements from being moved
 			var position = $(this).offset();
 			dragging.css('cursor','move');
 		
 			$(document).on("mousemove",".container",function(event){
 				
+				// Calculate Move Amount and Set Window Bounds
 				var move_left = Math.max($(".overlay").offset().left
 					, position.left + event.pageX - e.pageX);
 				move_left = Math.min(($(".overlay").offset().left+window_size.x)-$(this).width()
@@ -142,12 +126,6 @@ var board = function(){
 				move_top = Math.min(($(".overlay").offset().top+window_size.y)-$(this).height()
 					, move_top);
 
-				$('.debug').text('DEBUG pos: '+position.left+', '+position.top+'; '+
-							'click: '+e.pageX+', '+e.pageY+'; '+
-							'current: '+event.pageX+', '+event.pageY+'; '+
-							'new_pos: '+move_left+', '+move_top	+'; '+
-							dragging.parent().attr('id') 
-					);
 
 				dragging.parent().css({	//only moves what is being dragged, not others by accident.
 					'position': 'fixed',
@@ -155,9 +133,28 @@ var board = function(){
 					'top': 	move_top,
 				}); 
 
+				// DEBUG TEXT
+				$('.debug').text('DEBUG pos: '+position.left+', '+position.top+'; '+
+					'click: '+e.pageX+', '+e.pageY+'; '+
+					'current: '+event.pageX+', '+event.pageY+'; '+
+					'new_pos: '+move_left+', '+move_top	+'; '+
+					dragging.parent().attr('id') 
+				);
+
+
 			});
 		} //if(dragging==null)	
 	});
+	
+	// Stop Dragging Frame
+	$(document).on("mouseup",".overlay",function(e) {
+		$(document).off("mousemove",".container");
+		if(dragging!=null){
+			dragging.css('cursor','auto');
+		}
+		dragging = null;
+		$('.debug').text('DEBUG '+dragging);
+	});	
 	
 
 };
