@@ -31,20 +31,24 @@ var board = function(){
 	$(document).on("mouseover",".container",function() {
 		$(this).addClass('selected'); // Selects Frame
 	});
+	/*
 
 	$(document).on("mouseover", ".media a",function(){
+		$(".selected").removeClass('selected');
 		$(this).addClass('selected'); // Selects Frame
 	});
-
+*/
 	// Moving Mouse Out of Frame
 	$(document).on("mouseleave",".selected",function() {
 		$(this).removeClass('selected'); // Deselects Frame
 	});
 
+/*
 	// Clicking Media Buttons
-	$(".selected").click(function(){
-		$('.debug').text('DEBUG CLICK ' + this);
-	});
+	$(document).on('click', '.selected', function() {
+		$('.debug').text('DEBUG CLICK ' + this.text);
+	});*/
+	
 
     // Double Clicking on Page
     var numFrames = 0;
@@ -79,6 +83,8 @@ var board = function(){
 			);
 		}
 	});  
+
+
 
 
 	// REDO DRAGGING CODE LOOKING ONLY AT SELECTED CONTAINERS (.container .selected)
