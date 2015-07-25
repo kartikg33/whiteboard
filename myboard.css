@@ -8,6 +8,10 @@ body{
     -webkit-user-select:none;
 }
 
+.selected {
+	border: 1px dashed #742B32;
+	cursor: grab;
+}
 
 .overlay {
 	display:block;

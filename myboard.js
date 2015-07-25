@@ -29,19 +29,21 @@ var board = function(){
 
     // Hovering Over Frame
 	$(document).on("mouseover",".container",function() {
-		$(this).css({
-			'border': '1px dashed #742B32',
-			'cursor': 'grab'
-		}); 
+		$(this).addClass('selected'); // Selects Frame
+	});
+
+	$(document).on("mouseover", ".media a",function(){
 		$(this).addClass('selected'); // Selects Frame
 	});
 
 	// Moving Mouse Out of Frame
-	$(document).on("mouseleave",".container",function() {
-		$(this).css({
-			'border': '1px solid transparent'
-		}); 
+	$(document).on("mouseleave",".selected",function() {
 		$(this).removeClass('selected'); // Deselects Frame
+	});
+
+	// Clicking Media Buttons
+	$(".selected").click(function(){
+		$('.debug').text('DEBUG CLICK ' + this);
 	});
 
     // Double Clicking on Page
@@ -78,6 +80,9 @@ var board = function(){
 		}
 	});  
 
+
+	// REDO DRAGGING CODE LOOKING ONLY AT SELECTED CONTAINERS (.container .selected)
+	// BUT REMEMBER THAT NEWER FRAMES WILL BE SELECTED WHEN DRAGGED OVER SO NEED TO COMPENSATE
 	// Start Dragging Frame
 	var dragging = null; // Pointer to Frame being Dragged
 	$(document).on("mousedown",".container",function(e) {
@@ -128,7 +133,7 @@ var board = function(){
 	});	
 
 
-
+	
 
 
 
