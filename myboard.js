@@ -31,13 +31,7 @@ var board = function(){
 	$(document).on("mouseover",".container",function() {
 		$(this).addClass('selected'); // Selects Frame
 	});
-	/*
-
-	$(document).on("mouseover", ".media a",function(){
-		$(".selected").removeClass('selected');
-		$(this).addClass('selected'); // Selects Frame
-	});
-*/
+	
 	// Moving Mouse Out of Frame
 	$(document).on("mouseleave",".selected",function() {
 		$(this).removeClass('selected'); // Deselects Frame
