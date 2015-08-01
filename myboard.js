@@ -35,7 +35,7 @@ $(document).ready(function(){
 	*/
 
 	$(".container").mouseover(function(event) {
-		$(this).addClass('selected'); // Selects Frame
+		$(this).addClass("selected"); // Selects Frame
 	});
 
 /*
@@ -45,7 +45,7 @@ $(document).ready(function(){
 	});
 */
 	$(".selected").mouseleave(function(event) {
-		$(this).removeClass('selected'); // Deselects Frame
+		$(this).removeClass("selected"); // Deselects Frame
 	});
 
 /*
@@ -71,7 +71,9 @@ $(document).ready(function(){
 			
 			//Set Position of New Frame
 			var newFrame = $("#"+numFrames);
-			//newFrame.resizable();
+			newFrame
+				.draggable()
+				.resizable();
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
 			var reposition = newFrame.css({
