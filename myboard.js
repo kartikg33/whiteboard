@@ -36,12 +36,6 @@ $(document).ready(function(){
 	$(document).on("mouseleave",".selected",function() {
 		$(this).removeClass('selected'); // Deselects Frame
 	});
-
-/*
-	// Clicking Media Buttons
-	$(document).on('click', '.selected', function() {
-		$('.debug').text('DEBUG CLICK ' + this.text);
-	});*/
 	
 
     // Double Clicking on Page
@@ -60,9 +54,12 @@ $(document).ready(function(){
 			
 			//Set Position of New Frame
 			var newFrame = $("#"+numFrames);
+			//newFrame.addClass('ui-widget-content');
 			newFrame
-				.draggable()
-				.resizable();
+				//.draggable
+				.resizable({
+					ghost:true
+				});
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
 			var reposition = newFrame.css({
