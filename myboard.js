@@ -71,8 +71,7 @@ $(document).ready(function(){
 			
 			//Set Position of New Frame
 			var newFrame = $("#"+numFrames);
-			newFrame
-				.resizable();
+			//newFrame.resizable();
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
 			var reposition = newFrame.css({
