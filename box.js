@@ -1,7 +1,8 @@
-var box = function(){
+$(document).ready(function(){
 
 	// Click Image Button
-	$(document).on("click", ".media_image",function(){
+	//$(document).on("click", ".media_image",function(){
+	$(".media_image").click(function(event) {
 		var frame = $(".selected");
 		$('.debug').text('DEBUG CLICK ' + frame.parent().id);
 		//frame.children().remove();
@@ -11,8 +12,4 @@ var box = function(){
 
 	});
 
-};
-
-
-
-$(document).ready(box);
+});

@@ -1,5 +1,5 @@
 
-var board = function(){
+$(document).ready(function(){
 	//----------INITIALISE PAGE----------//
 	// VARIABLES
 	var window_centre = {x: 0, y: 0}; //centre point of window
@@ -26,14 +26,25 @@ var board = function(){
         currentMousePos.x = event.pageX;
         currentMousePos.y = event.pageY;
     });
-
+/*
     // Hovering Over Frame
 	$(document).on("mouseover",".container",function() {
 		$(this).addClass('selected'); // Selects Frame
 	});
 	
+	*/
+
+	$(".container").mouseover(function(event) {
+		$(this).addClass('selected'); // Selects Frame
+	});
+
+/*
 	// Moving Mouse Out of Frame
 	$(document).on("mouseleave",".selected",function() {
+		$(this).removeClass('selected'); // Deselects Frame
+	});
+*/
+	$(".selected").mouseleave(function(event) {
 		$(this).removeClass('selected'); // Deselects Frame
 	});
 
@@ -60,6 +71,8 @@ var board = function(){
 			
 			//Set Position of New Frame
 			var newFrame = $("#"+numFrames);
+			newFrame
+				.resizable();
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
 			var reposition = newFrame.css({
@@ -80,7 +93,7 @@ var board = function(){
 
 
 
-
+/*
 	// REDO DRAGGING CODE LOOKING ONLY AT SELECTED CONTAINERS (.container .selected)
 	// BUT REMEMBER THAT NEWER FRAMES WILL BE SELECTED WHEN DRAGGED OVER SO NEED TO COMPENSATE
 	// Start Dragging Frame
@@ -133,7 +146,7 @@ var board = function(){
 	});	
 
 
-	
+	*/
 
 
 
@@ -164,8 +177,4 @@ var board = function(){
 		//var num = "id"+($(".overlay").children().length-1);
 		//$("#"+num).remove();
 	});
-};
-
-
-
-$(document).ready(board);
+});
