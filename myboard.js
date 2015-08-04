@@ -63,7 +63,7 @@ $(document).ready(function(){
 			var x = currentMousePos.x-(newFrame.width()/2);
 			var y = currentMousePos.y-(newFrame.height()/2);
 			var reposition = newFrame.css({
-				'position': 'fixed',
+				'position': 'absolute',
 				'left': x,
 				'top': 	y,
 			}); 
